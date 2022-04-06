@@ -1,17 +1,19 @@
 package main
 
 import (
-	"fmt"
+	"math/big"
 
-	"github.com/quankori/go-eth/pkg/eth"
-	"github.com/quankori/go-eth/pkg/wallet"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/quankori/go-eth/pkg/transaction"
 )
 
 func main() {
-	block := eth.GetCurrentBlock()
-	fmt.Println(block.Number())
-	balance := eth.GetBalance("0x042F9D3b08D38D388F01192383e962d58A5F99e6").ParseEther()
-	fmt.Println(balance)
-	info := wallet.GenerateWallet()
-	fmt.Println(info.PrivateKey)
+	// block := eth.GetCurrentBlock()
+	// fmt.Println(block.Number())
+	// balance := eth.GetBalance("your_public_key").ParseEther()
+	// fmt.Println(balance)
+	// info := wallet.GenerateWallet()
+	// fmt.Println(info.PrivateKey)
+
+	transaction.SendTransaction(common.HexToAddress("your_public_key"), common.HexToAddress("your_public_key"), big.NewInt(10000000000000000))
 }
