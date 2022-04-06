@@ -5,6 +5,7 @@ import "github.com/spf13/viper"
 type Config struct {
 	PrivateKey string `mapstructure:"PRIVATE_KEY"`
 	NetworkURI string `mapstructure:"NETWORK_URI"`
+	TokenURI   string `mapstructure:"TOKEN_URI"`
 }
 
 func LoadConfig() (config Config, err error) {

@@ -11,11 +11,13 @@ require (
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/go-ole/go-ole v1.2.1 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
+	github.com/google/uuid v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
+	github.com/rjeczalik/notify v0.9.1 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
