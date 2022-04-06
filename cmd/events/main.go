@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	// block := eth.GetCurrentBlock()
 	// fmt.Println(block.Number())
 	// balance := eth.GetBalance("your_public_key").ParseEther()
@@ -15,5 +16,5 @@ func main() {
 	// info := wallet.GenerateWallet()
 	// fmt.Println(info.PrivateKey)
 
-	transaction.SendTransaction(common.HexToAddress("your_public_key"), common.HexToAddress("your_public_key"), big.NewInt(10000000000000000))
+	transaction.Transfer(common.HexToAddress("your_wallet"), big.NewInt(10000000000000000))
 }

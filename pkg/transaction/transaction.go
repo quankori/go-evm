@@ -9,16 +9,19 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/quankori/go-eth/config"
 	"github.com/quankori/go-eth/internal/connect"
 )
 
-func SendTransaction(from common.Address, to common.Address, amount *big.Int) {
+func Transfer(to common.Address, amount *big.Int) {
+	config, _ := config.LoadConfig()
 	client := connect.ConnectClient()
-	privateKey, err := crypto.HexToECDSA("your_private_key")
+	privateKey, err := crypto.HexToECDSA(config.PrivateKey)
 	if err != nil {
 		log.Fatal(err)
 	}
-	nonce, err := client.PendingNonceAt(context.Background(), from)
+	from := crypto.PubkeyToAddress(privateKey.PublicKey).Hex()
+	nonce, err := client.PendingNonceAt(context.Background(), common.HexToAddress(from))
 	if err != nil {
 		log.Fatal(err)
 	}
