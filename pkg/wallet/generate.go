@@ -13,7 +13,7 @@ type Wallet struct {
 	PublicAddress string
 }
 
-func GenerateWallet() *Wallet {
+func Generate() *Wallet {
 	pvk, err := crypto.GenerateKey()
 	if err != nil {
 		log.Fatal(err)

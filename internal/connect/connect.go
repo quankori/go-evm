@@ -17,3 +17,12 @@ func ConnectClient() *ethclient.Client {
 	defer client.Close()
 	return client
 }
+
+func ConnectWebsocket() *ethclient.Client {
+	config, _ := config.LoadConfig()
+	client, err := ethclient.Dial(config.WebsocketkURI)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return client
+}

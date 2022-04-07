@@ -6,12 +6,17 @@ import (
 	"log"
 	"math/big"
 
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/quankori/go-eth/config"
 	"github.com/quankori/go-eth/internal/connect"
 )
+
+type Transaction struct {
+	transaction *types.Transaction
+}
 
 func Transfer(to common.Address, amount *big.Int) {
 	config, _ := config.LoadConfig()
@@ -43,4 +48,26 @@ func Transfer(to common.Address, amount *big.Int) {
 		log.Fatal(err)
 	}
 	fmt.Printf("tx sent: %s", tx.Hash().Hex())
+}
+
+func NewTransaction(c *types.Transaction) *Transaction {
+	return &Transaction{c}
+}
+
+func (tx Transaction) Receipt() *types.Receipt {
+	client := connect.ConnectClient()
+	receipt, err := bind.WaitMined(context.Background(), client, tx.transaction)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return receipt
+}
+
+func TransactionHash(txHash types.Transaction) Transaction {
+	client := connect.ConnectClient()
+	tx, _, err := client.TransactionByHash(context.Background(), txHash.Hash())
+	if err != nil {
+		log.Fatal(err)
+	}
+	return Transaction{tx}
 }
